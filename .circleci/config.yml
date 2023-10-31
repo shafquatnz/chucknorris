@@ -2,7 +2,7 @@ version: 2.1
 
 commands:
   setup_os:
-    description: "Update OS using apt"
+    description: "Update OS and setup paths"
     steps:
       - run: |
           apt update
@@ -19,7 +19,7 @@ jobs:
 
     steps:
       # Checkout Source Code
-      - update_os
+      - setup_os
       - checkout
 
       # setup env
