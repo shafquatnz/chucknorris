@@ -6,7 +6,7 @@
         <title>Chuck Norris Facts</title> 
     </head>
     <body>
-        <h3>Random Chuck Norris Quote</h3>
+        <h3>Random Chuck Norris Fact</h3>
         <div>{{$thing}}</div><br/>
         <div>
             <form>
