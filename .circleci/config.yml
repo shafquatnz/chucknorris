@@ -33,7 +33,7 @@ jobs:
             cd /var/www/html/chucknorris/playwright
             PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit --project=chromium
       - store_test_results:
-          path: results.xml        
+          path: /var/www/html/chucknorris/playwright/results.xml
 
 workflows:
   run-test-workflow:
