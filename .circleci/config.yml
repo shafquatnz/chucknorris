@@ -13,7 +13,7 @@ commands:
 jobs:
   run-test:
     docker:
-      - image: govtnz/playwright-laravel:chucknorris
+      - image: govtnz/laravel-playwright:chucknorris
 
     working_directory: /var/www/html/chucknorris
 
