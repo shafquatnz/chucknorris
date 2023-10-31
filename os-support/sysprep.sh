@@ -1,7 +1,7 @@
 #!/bin/bash
 service mariadb start
-mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'"
 cd /var/www/html/chucknorris
+mysql < os-support/dbsetup.sql
 cp .env.example .env
 composer install
 php artisan key:generate
