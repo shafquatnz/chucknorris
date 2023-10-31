@@ -1,5 +1,6 @@
 #!/bin/bash
 service mariadb start
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'"
 cd /var/www/html/chucknorris
 cp .env.example .env
 composer install
