@@ -18,22 +18,25 @@ jobs:
     working_directory: /var/www/html/chucknorris
 
     steps:
-      # Checkout Source Code
       - setup_os
       - checkout
 
-      # setup env
       - run:
           name: Setup environment
           command: |
             /var/www/html/chucknorris/os-support/sysprep.sh
+
       - run:
           name: Run playwright tests
           command: |
             cd /var/www/html/chucknorris/playwright
-            PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit --project=chromium
+            npx playwright test
+
       - store_test_results:
           path: /var/www/html/chucknorris/playwright/results.xml
+
+      - store_artifacts:
+          path: /var/www/html/chucknorris/playwright/test-results
 
 workflows:
   run-test-workflow:
