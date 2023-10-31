@@ -1,0 +1,41 @@
+version: 2.1
+
+commands:
+  setup_os:
+    description: "Update OS using apt"
+    steps:
+      - run: |
+          apt update
+          apt upgrade -y
+          mkdir -p /var/www/html/chucknorris
+          git config --global --add safe.directory /var/www/html/chucknorris
+
+jobs:
+  run-test:
+    docker:
+      - image: govtnz/playwright-laravel:chucknorris
+
+    working_directory: /var/www/html/chucknorris
+
+    steps:
+      # Checkout Source Code
+      - update_os
+      - checkout
+
+      # setup env
+      - run:
+          name: Setup environment
+          command: |
+            /var/www/html/chucknorris/os-support/sysprep.sh
+      - run:
+          name: Run playwright tests
+          command: |
+            cd /var/www/html/chucknorris/playwright
+            PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit --project=chromium
+      - store_test_results:
+          path: results.xml        
+
+workflows:
+  run-test-workflow:
+    jobs:
+      - run-test
