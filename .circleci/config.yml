@@ -36,7 +36,7 @@ jobs:
           path: /var/www/html/chucknorris/playwright/results.xml
 
       - store_artifacts:
-          path: /var/www/html/chucknorris/playwright/test-results
+          path: /var/www/html/chucknorris/playwright/playwright-report
 
 workflows:
   run-test-workflow:
